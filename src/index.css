@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------
+   ✅ Custom utility classes (bisa dilapis layer)
+---------------------------------------------- */
+
+@layer components {
+  .btn-primary {
+    @apply bg-kuninglidah text-tomboltext px-6 py-2 rounded font-semibold hover:bg-yellow-400 dark:hover:bg-yellow-300 transition-colors duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-hijautua text-white px-6 py-2 rounded font-semibold hover:bg-green-800 transition-colors duration-300;
+  }
+
+  .text-quote {
+    @apply text-center text-lg italic text-textgelap dark:text-textterang mt-8;
+  }
+
+  .section-container {
+    @apply px-6 py-12 max-w-4xl mx-auto;
+  }
+
+  .heading-main {
+    @apply text-4xl md:text-5xl font-extrabold text-hijautua dark:text-kuninglidah transition-colors;
+  }
+
+  .heading-sub {
+    @apply text-xl text-hijaulakeabu font-medium dark:text-hijaulakeabu;
+  }
+
+  .card-hover {
+    @apply hover:shadow-lg hover:scale-[1.02] transition-all duration-300;
+  }
+}

@@ -1,0 +1,70 @@
+# =========================================
+# ✅ FILE SENSITIF & CREDENTIAL
+# =========================================
+.env
+.env.*               # untuk .env.local, .env.production, dll
+*.env.*.local
+*.env.local
+.envrc
+.supabase
+token.*
+apikey.*
+api-key.*
+jwt.*
+*.pem
+*.crt
+*.key
+*.secret
+
+# =========================================
+# ✅ EKSTENSI SENSITIF YANG WAJIB DIABAIKAN
+# =========================================
+*.json
+*.ts
+
+# =========================================
+# ✅ BUILD OUTPUT & ARTIFAK
+# =========================================
+dist/
+build/
+out/
+.cache/
+.next/
+.vite/
+
+# =========================================
+# ✅ DEPENDENCIES
+# =========================================
+node_modules/
+.pnpm-store/
+
+# =========================================
+# ✅ LOG FILES
+# =========================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# =========================================
+# ✅ EDITOR CONFIG & OS FILES
+# =========================================
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# =========================================
+# ✅ KHUSUS PROYEKMU
+# =========================================
+/private/
+*.local
+*.tsbuildinfo
+*.zip
