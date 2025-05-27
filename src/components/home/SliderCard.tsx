@@ -24,7 +24,13 @@ const cards = [
     title: "Instagram",
     image: "/assets/images/instagram.png",
     buttonText: "Jalin Sosialisasi",
-    link: "https://www.instagram.com/@muftyexperiences",
+    link: "https://www.instagram.com/muftyexperiences/",
+  },
+    {
+    title: "Rawat Komputer",
+    image: "/assets/images/rawatkomputer.png",
+    buttonText: "Buat Janji",
+    link: "https://rawatkomputer.muftyexperiences.com/",
   },
   {
     title: "Coming Soon",
