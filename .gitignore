@@ -2,6 +2,7 @@
 # ✅ FILE SENSITIF & CREDENTIAL
 # =========================================
 .env
+.env.local
 .env.*               # untuk .env.local, .env.production, dll
 *.env.*.local
 *.env.local

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Navbar from "./Navbar";
-import Footer from "./Footer"; // ✅ Gunakan Footer terpisah yang sudah disesuaikan
+import Footer from "./Footer";
 
 const LayoutWrapper = ({ children }: { children: ReactNode }) => {
   return (

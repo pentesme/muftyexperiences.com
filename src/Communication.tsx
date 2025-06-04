@@ -1,31 +1,49 @@
-import { useState } from "react";
+import { useState } from "react"
 
 const Communication = () => {
-  const [form, setForm] = useState({ title: "", message: "", email: "" });
-  const [success, setSuccess] = useState(false);
+  const [form, setForm] = useState({ title: "", message: "", email: "" })
+  const [success, setSuccess] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (form.title && form.message && form.email) {
-      setTimeout(() => {
-        setSuccess(true);
-      }, 500);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!form.title || !form.message || !form.email) return
+
+    setLoading(true)
+    try {
+      const res = await fetch(import.meta.env.VITE_KIRIM_PESAN_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      })
+
+      const data = await res.json()
+
+      if (res.ok && data.success) {
+        setSuccess(true)
+      } else {
+        alert("Gagal mengirim pesan: " + (data.error || "Unknown error"))
+      }
+    } catch (err) {
+      console.error("❌ Error:", err)
+      alert("Terjadi kesalahan saat mengirim pesan.")
+    } finally {
+      setLoading(false)
     }
-  };
+  }
 
   const handleReset = () => {
-    setForm({ title: "", message: "", email: "" });
-    setSuccess(false);
-  };
+    setForm({ title: "", message: "", email: "" })
+    setSuccess(false)
+  }
 
   return (
     <div className="section-container animate-fade-in text-textgelap dark:text-textterang">
-      {/* Seksi 2 */}
       {!success ? (
         <section className="max-w-xl mx-auto bg-hijaulakeabu dark:bg-hijaulakeabu p-6 rounded-lg shadow-md space-y-6 animate-slide-down">
           <h2 className="heading-main text-center">Terima Kasih.</h2>
@@ -69,9 +87,10 @@ const Communication = () => {
             </div>
             <button
               type="submit"
+              disabled={loading}
               className="w-full px-6 py-2 rounded-md bg-kuninglidah text-tomboltext font-semibold hover:bg-yellow-400 dark:hover:bg-yellow-300 transition-colors"
             >
-              Submit
+              {loading ? "Mengirim..." : "Submit"}
             </button>
           </form>
         </section>
@@ -90,7 +109,7 @@ const Communication = () => {
         </section>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Communication;
+export default Communication

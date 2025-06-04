@@ -9,14 +9,51 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const { error } = await supabase.auth.signInWithPassword({
+    console.log("🔐 Attempting login with:", email);
+
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) {
+      console.error("❌ Login error:", error);
       setErrorMsg("Login gagal: " + error.message);
     } else {
+      console.log("✅ Login success:", data);
+
+      // 🌐 Ambil session untuk dapatkan access_token
+      const sessionRes = await supabase.auth.getSession();
+      const token = sessionRes.data.session?.access_token;
+
+      if (!token) {
+        console.error("❌ Tidak bisa ambil token session.");
+        return;
+      }
+
+      // 🧪 Coba fetch ke endpoint REST admin_users
+      try {
+        const res = await fetch(
+          "https://uwhfvobihjdbetxhxfau.supabase.co/rest/v1/admin_users?select=id",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              apikey: import.meta.env.VITE_SUPABASE_ANON_KEY,
+            },
+          }
+        );
+
+        const text = await res.text(); // bisa JSON atau error
+
+        if (!res.ok) {
+          console.error("❌ REST fetch failed:", res.status, text);
+        } else {
+          console.log("✅ REST fetch result (admin_users):", JSON.parse(text));
+        }
+      } catch (err) {
+        console.error("❌ Gagal fetch admin_users:", err);
+      }
+
       navigate("/admin");
     }
   };

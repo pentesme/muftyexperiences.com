@@ -9,7 +9,7 @@ import LayoutWrapper from "./components/layout/LayoutWrapper";
 // Halaman
 import Home from "./Home";
 import Blog from "./Blog";
-import BlogDetail from "./BlogDetail"; // ✅ Untuk halaman detail blog
+import BlogDetail from "./BlogDetail";
 import Communication from "./Communication";
 import About from "./About";
 import Profile from "./Profile";
@@ -18,12 +18,14 @@ import Privacy from "./Privacy";
 import FAQ from "./FAQ";
 import Admin from "./components/admin/Admin";
 import NotFound from "./404";
-
-// ✅ Tambahan halaman login admin
 import Login from "./features/auth/Login";
+
+// Tracking
+import AnalyticsAndPixel from "./components/tracking/AnalyticsAndPixel";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    <AnalyticsAndPixel /> {/* ✅ GA & Pixel dari .env */}
     <BrowserRouter>
       <Routes>
         <Route
@@ -106,12 +108,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             </LayoutWrapper>
           }
         />
-        <Route
-          path="/login"
-          element={<Login />}
-        />
-
-        {/* ✅ Halaman fallback untuk path yang tidak cocok */}
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

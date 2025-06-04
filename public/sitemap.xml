@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://muftyexperiences.com/</loc>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://muftyexperiences.com/blog</loc>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://muftyexperiences.com/communication</loc>
+  </url>
+  <url>
+    <loc>https://muftyexperiences.com/about</loc>
+  </url>
+  <url>
+    <loc>https://muftyexperiences.com/profile</loc>
+  </url>
+  <url>
+    <loc>https://muftyexperiences.com/privacy</loc>
+  </url>
+  <url>
+    <loc>https://muftyexperiences.com/terms</loc>
+  </url>
+  <url>
+    <loc>https://muftyexperiences.com/faq</loc>
+  </url>
+</urlset>

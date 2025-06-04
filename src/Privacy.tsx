@@ -122,7 +122,7 @@ const Privacy = () => {
       {/* Seksi 2 – Intro */}
       <section className="max-w-3xl mx-auto text-sm leading-relaxed text-justify animate-slide-down space-y-4">
         <p>
-          Terima Kasih telah mengunjungi <strong>Mufty Experiences</strong> (Kami) dan atau salah satu karya kami (Layanan Kami): muftyexperiences.com, youtube.com/@muftyexperiences, instagram.com/@muftyexperiences, MySaldo.
+          Terima Kasih telah mengunjungi <strong>Mufty Experiences</strong> (Kami) dan atau salah satu karya kami (Layanan Kami): muftyexperiences.com, youtube.com/@muftyexperiences, instagram.com/@muftyexperiences, MySaldo, Rawat Komputer #PianDirumahAja.
         </p>
         <p>
           Dengan mengakses dan menggunakan layanan kami, Kamu telah menerima dan menyetujui Ketentuan dan <strong>Kebijakan Privasi</strong> kami.
