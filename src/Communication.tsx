@@ -1,46 +1,58 @@
-import { useState } from "react"
+import { useEffect, useState } from "react";
 
 const Communication = () => {
-  const [form, setForm] = useState({ title: "", message: "", email: "" })
-  const [success, setSuccess] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [form, setForm] = useState({ title: "", message: "", email: "" });
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // ✅ Tambahkan canonical tag untuk halaman /communication
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.setAttribute("rel", "canonical");
+    link.setAttribute("href", "https://muftyexperiences.com/communication");
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setForm((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!form.title || !form.message || !form.email) return
+    e.preventDefault();
+    if (!form.title || !form.message || !form.email) return;
 
-    setLoading(true)
+    setLoading(true);
     try {
       const res = await fetch(import.meta.env.VITE_KIRIM_PESAN_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
-      })
+      });
 
-      const data = await res.json()
+      const data = await res.json();
 
       if (res.ok && data.success) {
-        setSuccess(true)
+        setSuccess(true);
       } else {
-        alert("Gagal mengirim pesan: " + (data.error || "Unknown error"))
+        alert("Gagal mengirim pesan: " + (data.error || "Unknown error"));
       }
     } catch (err) {
-      console.error("❌ Error:", err)
-      alert("Terjadi kesalahan saat mengirim pesan.")
+      console.error("❌ Error:", err);
+      alert("Terjadi kesalahan saat mengirim pesan.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleReset = () => {
-    setForm({ title: "", message: "", email: "" })
-    setSuccess(false)
-  }
+    setForm({ title: "", message: "", email: "" });
+    setSuccess(false);
+  };
 
   return (
     <div className="section-container animate-fade-in text-textgelap dark:text-textterang">
@@ -109,7 +121,7 @@ const Communication = () => {
         </section>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Communication
+export default Communication;

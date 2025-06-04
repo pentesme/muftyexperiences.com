@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   HelpCircle,
   UserPlus,
@@ -11,6 +11,18 @@ import { Link } from "react-router-dom";
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  // ✅ Tambahkan canonical untuk halaman /faq
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.setAttribute("rel", "canonical");
+    link.setAttribute("href", "https://muftyexperiences.com/faq");
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
 
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);

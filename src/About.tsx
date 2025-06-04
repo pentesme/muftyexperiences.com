@@ -1,6 +1,19 @@
-import { Lightbulb, Globe, RefreshCw } from "lucide-react";
+import { useEffect } from "react"
+import { Lightbulb, Globe, RefreshCw } from "lucide-react"
 
 const About = () => {
+  // ✅ Tambahkan tag canonical untuk halaman /about
+  useEffect(() => {
+    const link = document.createElement("link")
+    link.setAttribute("rel", "canonical")
+    link.setAttribute("href", "https://muftyexperiences.com/about")
+    document.head.appendChild(link)
+
+    return () => {
+      document.head.removeChild(link)
+    }
+  }, [])
+
   const timeline = [
     {
       year: "2007",
@@ -17,7 +30,7 @@ const About = () => {
       text: "Mufty Experience Berubah Nama Menjadi Mufty Experiences",
       icon: <RefreshCw size={20} className="text-hijautua" />,
     },
-  ];
+  ]
 
   return (
     <div className="section-container space-y-12 animate-fade-in text-textgelap dark:text-textterang">
@@ -56,7 +69,7 @@ const About = () => {
         </p>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default About;
+export default About

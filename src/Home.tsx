@@ -1,7 +1,20 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SliderCard from "./components/home/SliderCard";
 
 const Home = () => {
+  // ✅ Tambahkan canonical tag untuk halaman utama
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.setAttribute("rel", "canonical");
+    link.setAttribute("href", "https://muftyexperiences.com/");
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
   return (
     <div className="animate-fade-in text-textgelap dark:text-textterang">
       {/* Hero Section */}

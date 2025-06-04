@@ -1,8 +1,21 @@
-import { useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { ArrowLeft } from "lucide-react"
 
 const NotFound = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
+  // ✅ Tambahkan canonical tag secara manual
+  useEffect(() => {
+    const link = document.createElement("link")
+    link.setAttribute("rel", "canonical")
+    link.setAttribute("href", "https://muftyexperiences.com/404")
+    document.head.appendChild(link)
+
+    return () => {
+      document.head.removeChild(link)
+    }
+  }, [])
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 text-center bg-hijautua text-white animate-fade-in">
@@ -20,7 +33,7 @@ const NotFound = () => {
         Kembali ke Beranda
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

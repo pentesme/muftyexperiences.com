@@ -21,6 +21,18 @@ const Blog = () => {
   const [categoryFilter, setCategoryFilter] = useState("");
   const [categories, setCategories] = useState<string[]>([]);
 
+  // ✅ Tambahkan canonical untuk halaman blog
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.setAttribute("rel", "canonical");
+    link.setAttribute("href", "https://muftyexperiences.com/blog");
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
   useEffect(() => {
     const fetchPosts = async () => {
       const { data, error } = await supabase
@@ -43,7 +55,6 @@ const Blog = () => {
       setFiltered(formatted);
       setLoading(false);
 
-      // Kategori unik
       const uniqueCategories = Array.from(
         new Set(formatted.map((post) => post.category).filter(Boolean))
       );
